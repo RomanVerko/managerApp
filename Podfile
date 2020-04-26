@@ -7,6 +7,9 @@ target 'managerApp' do
 
 pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
+pod 'Firebase/Database'
+pod 'Firebase/Firestore'
+pod 'FirebaseFirestoreSwift'
   # Pods for managerApp
 
 end

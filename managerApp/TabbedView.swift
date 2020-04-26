@@ -12,7 +12,19 @@ import SwiftUI
 struct TabbedView: View {
     @EnvironmentObject var session: SessionStore
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView{
+            NavigationView{TeamView()}.tabItem({
+            Image(systemName: "person.3.fill")
+                .font(.title)
+            Text("Team")
+            }).tag(0)
+            
+            NavigationView{ChecksView()}.tabItem({
+            Image(systemName: "square.and.arrow.up.fill")
+                .font(.title)
+            Text("Checkouts")
+            }).tag(1)
+        }
     }
 }
 
