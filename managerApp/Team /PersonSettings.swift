@@ -8,12 +8,17 @@
 
 import SwiftUI
 
-struct PersonSettings: View {
+struct PersonSettings:Identifiable, View {
     var person:Teammate
     @State var name:String = ""
     @State var role:String = ""
     @State var isPushOn = true
     @State private var didTap:Bool = false
+    @EnvironmentObject var session: SessionStore
+    @Environment(\.presentationMode) var presentationMode
+    var id = UUID()
+    var pic:String = "user"
+    var team:String = "HSE team"
     
     init(person: Teammate){
         self.person = person
@@ -60,7 +65,28 @@ struct PersonSettings: View {
             Spacer()
             
             Group{
-                Button(action: {}){
+                Button(action: {
+                    if (self.name != "" && self.role != ""){
+                        self.session.db.collection("users")
+                            .document(self.name)
+                            .setData(["name":self.name,
+                                      "role":self.person.pic,
+                                      "pic":self.pic,
+                                      "team":self.team,
+                                      "isActive":self.isPushOn
+                                    
+                            ]){ err in
+                                      if let err = err {
+                                          print("Error adding document: \(err)")
+                                      } else {
+                                        print("Document added with ID: \(self.self.name.lowercased().trimmingCharacters(in: .whitespaces))")
+                                      }
+                                            
+                            }
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                    
+                }){
                     Text(didTap ? "Done!" : "Submit")
                     .frame(minWidth: 0, maxWidth: .infinity)
                         .frame(height: 50)
@@ -82,5 +108,6 @@ struct PersonSettings: View {
 struct PersonSettings_Previews: PreviewProvider {
     static var previews: some View {
         PersonSettings(person: Teammate(pic: "Andrew", name: "Andrew Akhapkin", role: "Backend developer"))
+         .environmentObject(SessionStore())
     }
 }

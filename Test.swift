@@ -12,8 +12,6 @@ import Firebase
 struct Test {
     var db = Firestore.firestore()
     
-    init(){
-        db.collection("users").addDocument(data: ["name":"Andrey Akhapkin" , "role":"Back-end developer", "pic":"Andrew"])
-    }
+    
     
 }

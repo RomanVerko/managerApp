@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct CheckSettings: View {
+struct CheckSettings:Identifiable, View {
     var checkItem:CheckItem
     @State var name:String=""
     @State var desc: String = ""
@@ -17,6 +17,8 @@ struct CheckSettings: View {
     @State private var mode = ["Module results", "Mental health"]
     @State var isActive:Bool = true
     @EnvironmentObject var session: SessionStore
+    @Environment(\.presentationMode) var presentationMode
+    var id = UUID()
     
 
     var body: some View {
@@ -24,7 +26,6 @@ struct CheckSettings: View {
             
             Text("Name").padding(.top, 20)
                   .font(.headline)
-                .padding(.top, 60)
             
             TextField("\(checkItem.name)", text: $name)
             .font(.system(size: 14))
@@ -61,8 +62,24 @@ struct CheckSettings: View {
             Group{
                 Button(action: {
                     if (self.name != "" && self.desc != ""){
-                        self.session.db.collection("checks").addDocument(data: ["name":self.name , "desc":self.desc, "mode":self.selectorIndex])
-                        self.session.isPresentedCheckSet.toggle()
+                        if self.selectorIndex == 0{
+                            self.session.db.collection("checkouts")
+                            .document(self.name.lowercased().trimmingCharacters(in: .whitespaces))
+                            .setData(["date":Date(),
+                                      "isActive":self.isActive,
+                                      "type":self.mode[self.selectorIndex],
+                                      "desc":self.desc]){ err in
+                                          if let err = err {
+                                              print("Error adding document: \(err)")
+                                          } else {
+                                            print("Document added with ID: \(self.name.lowercased().trimmingCharacters(in: .whitespaces))")
+                                          }
+                            }
+                        } else {
+                            
+                        }
+                        self.session.isPresentedCheckSet = false
+                        self.presentationMode.wrappedValue.dismiss()
                     }
                    
                 }){
