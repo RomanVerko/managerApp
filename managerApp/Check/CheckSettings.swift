@@ -7,20 +7,32 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct CheckSettings:Identifiable, View {
     var checkItem:CheckItem
     @State var name:String=""
     @State var desc: String = ""
     @State private var didTap:Bool = false
-    @State private var selectorIndex = 0
+    @State private var selectorIndex:Int = 0
     @State private var mode = ["Module results", "Mental health"]
     @State var isActive:Bool = true
     @EnvironmentObject var session: SessionStore
     @Environment(\.presentationMode) var presentationMode
     var id = UUID()
-    
 
+    init(checkItem: CheckItem){
+        self.checkItem = checkItem
+        self.isActive = checkItem.isActive
+        self.name = checkItem.name
+        self.desc = checkItem.desc
+        if checkItem.type == "Module results" {
+            selectorIndex = 0
+        } else {
+            selectorIndex = 1
+        }
+    }
+    
     var body: some View {
         VStack(spacing: 15){
             
@@ -51,37 +63,57 @@ struct CheckSettings:Identifiable, View {
             .pickerStyle(SegmentedPickerStyle())
             .padding()
             
+            
+            
             Divider()
             
             Toggle(isOn: $isActive){
                 Text("Active notification")
             }.padding()
             
+            Group{
+                VStack {
+                    Button(action: {}){
+                        Text("Subscribers")
+                    }
+//                    List(self.team!){ person in
+//                        HStack{
+//                            Teammate(pic: person.pic, name: person.name, role: person.role)
+//                        }
+//                    }
+                    
+                }
+                
+                
+            }
             Spacer()
             
             Group{
                 Button(action: {
-                    if (self.name != "" && self.desc != ""){
-                        if self.selectorIndex == 0{
+                    if (self.name == "" && self.desc != ""){
+                        self.name = self.checkItem.name
+                    } else if (self.name != "" && self.desc == ""){
+                        self.desc = self.checkItem.desc
+                    } else if (self.name == "" && self.desc == ""){
+                        self.name = self.checkItem.name
+                        self.desc = self.checkItem.desc
+                    }
                             self.session.db.collection("checkouts")
                             .document(self.name.lowercased().trimmingCharacters(in: .whitespaces))
                             .setData(["date":Date(),
+                                      "name":self.name,
                                       "isActive":self.isActive,
                                       "type":self.mode[self.selectorIndex],
-                                      "desc":self.desc]){ err in
+                                      "desc":self.desc], merge: true){ err in
                                           if let err = err {
                                               print("Error adding document: \(err)")
                                           } else {
                                             print("Document added with ID: \(self.name.lowercased().trimmingCharacters(in: .whitespaces))")
                                           }
                             }
-                        } else {
-                            
-                        }
+                        
                         self.session.isPresentedCheckSet = false
                         self.presentationMode.wrappedValue.dismiss()
-                    }
-                   
                 }){
                     Text(didTap ? "Done!" : "Submit")
                     .frame(minWidth: 0, maxWidth: .infinity)
@@ -92,12 +124,12 @@ struct CheckSettings:Identifiable, View {
                     .cornerRadius(5)
                 }
                 .padding(.horizontal, 40)
-                .padding(.bottom, 35)
+                
             }
             
         }.navigationBarTitle(checkItem.name)
             .padding(.horizontal, 40)
-            .padding(.bottom, 35)
+            .padding(.bottom, 15)
     }
 }
 

@@ -19,6 +19,7 @@ struct PersonSettings:Identifiable, View {
     var id = UUID()
     var pic:String = "user"
     var team:String = "HSE team"
+    var email:String = ""
     
     init(person: Teammate){
         self.person = person
@@ -36,7 +37,7 @@ struct PersonSettings:Identifiable, View {
                 Circle().stroke(Color.white, lineWidth: 4))
             .shadow(radius: 10)
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 230)
+                .frame(width: 200)
             .padding(.top, 10)
             
             
@@ -68,13 +69,12 @@ struct PersonSettings:Identifiable, View {
                 Button(action: {
                     if (self.name != "" && self.role != ""){
                         self.session.db.collection("users")
-                            .document(self.name)
+                            .document(self.person.email) // todo по email
                             .setData(["name":self.name,
-                                      "role":self.person.pic,
-                                      "pic":self.pic,
-                                      "team":self.team,
+                                      "role":self.role,
+                                      "pic":self.person.pic,
+                                      "email":self.person.email,
                                       "isActive":self.isPushOn
-                                    
                             ]){ err in
                                       if let err = err {
                                           print("Error adding document: \(err)")
@@ -83,6 +83,7 @@ struct PersonSettings:Identifiable, View {
                                       }
                                             
                             }
+                        self.session.isPresentedTeamSet = false
                         self.presentationMode.wrappedValue.dismiss()
                     }
                     
@@ -90,7 +91,7 @@ struct PersonSettings:Identifiable, View {
                     Text(didTap ? "Done!" : "Submit")
                     .frame(minWidth: 0, maxWidth: .infinity)
                         .frame(height: 50)
-                        .foregroundColor(.white)
+                        .foregroundColor(.white) 
                         .font(.system(size: 14, weight: .bold))
                         .background(LinearGradient(gradient: Gradient(colors: [.green ,.blue]), startPoint: .leading , endPoint: .trailing))
                     .cornerRadius(5)

@@ -7,32 +7,64 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct TeamView: View {
     
     @EnvironmentObject var session: SessionStore
+    @ObservedObject var userDatas = observer()
+
+   
     
-    var teammates:[Teammate] = [Teammate(pic: "Andrew", name: "Andrey Akhapkin", role: "Back-end developer"),
-    Teammate(pic: "Danya", name: "Daniil Pleshkov", role: "DWS developer"),
-    Teammate(pic: "Radmir", name: "Radmir Imamov", role: "Front-end developer"),
-    Teammate(pic: "Sasha", name: "Alexandr Manuilov", role: "Front-end developer") 
-    ]
+    @State var teammates:[Teammate] = []
+    
+//    [Teammate(pic: "Andrew", name: "Andrey Akhapkin", role: "Back-end developer"),
+//    Teammate(pic: "Danya", name: "Daniil Pleshkov", role: "DWS developer"),
+//    Teammate(pic: "Radmir", name: "Radmir Imamov", role: "Front-end developer"),
+//    Teammate(pic: "Sasha", name: "Alexandr Manuilov", role: "Front-end developer")
+//    ]
+    
+    
+    class observer: ObservableObject{
+         
+        @Published var userData = [Teammate]()
+        
+        init(){
+            let db = Firestore.firestore().collection("users")
+            
+            db.addSnapshotListener{ (snap, err) in
+                 
+                if err != nil{
+                    print((err?.localizedDescription)!)
+                    return
+                }
+                self.userData = [Teammate]()
+                Firestore.firestore().clearPersistence { (err) in
+                    print((err?.localizedDescription)!)
+                }
+                for i in snap!.documents{
+                    print((i["name"] as? String ?? "default name"))
+                    print((i["role"] as? String ?? "default role"))
+                    let mate = Teammate(pic: i["pic"] as? String ?? "user",
+                                        name: i["name"] as? String ?? "default name",
+                                        role: i["role"] as? String ?? "default role",
+                                        email: i["email"] as? String ?? "default email")
+                    
+                    self.userData.append(mate)
+                }
+                
+            }
+        }
+        
+    }
     
     var body: some View {
         VStack{
-        List(teammates){ mate in
+            List(userDatas.userData ){ mate in
             NavigationLink(destination: PersonSettings(person: mate)){
-               Teammate(pic: mate.pic, name: mate.name, role: mate.role)
+                Teammate(mate: mate)
             }
-        }.navigationBarTitle("Your teammates")
-        .navigationBarItems(trailing:
-            Button(action:{}){
-                Image(systemName:"plus.circle")
-                    .font(.largeTitle)
-                    .foregroundColor(.gray)
-            }
-            )
-        
+        }.navigationBarTitle("Team")
         Spacer()
         
             Button(action:session.signOut){

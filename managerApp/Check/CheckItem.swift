@@ -10,26 +10,47 @@ import SwiftUI
 
 struct CheckItem: Identifiable, View {
     var id = UUID()
-    var color:Color = Color.green
+    var color:Color = .red
     var name:String = ""
     var desc:String = ""
+    var type:String = ""
+    var isActive = true
+    var dttm : Date = Date()
+    
     
     init(){
-        color = Color.red
+        type = "Module results"
         name = "New checkout"
-        desc = "Everyday notification"
+        desc = "Daily"
+        isActive = true
+        color = .red
+        dttm = Date()
     }
     
-    init(name: String, desc: String, color: Color){
-        self.color = color
+    init(name: String, desc: String, type: String, isActive: Bool, dttm:Date){
         self.desc = desc
         self.name = name
+        self.type = type
+        self.isActive = isActive
+        if isActive == true{
+            self.color = .green
+        }  else {
+            color = .red
+        }
+        self.dttm = dttm
     }
     
     init(item: CheckItem){
-        self.color = item.color
         self.desc = item.desc
         self.name = item.name
+        self.type = item.type
+        self.isActive = item.isActive
+        if isActive == true{
+           self.color = .green
+       }  else {
+           color = .red
+       }
+        self.dttm = item.dttm
     }
     
     var body: some View {
