@@ -10,9 +10,9 @@ import SwiftUI
 
 struct PersonSettings:Identifiable, View {
     var person:Teammate
-    @State var name:String = ""
-    @State var role:String = ""
-    @State var isPushOn = true
+    @State var name:String
+    @State var role:String
+    @State var isActive:Bool
     @State private var didTap:Bool = false
     @EnvironmentObject var session: SessionStore
     @Environment(\.presentationMode) var presentationMode
@@ -23,8 +23,9 @@ struct PersonSettings:Identifiable, View {
     
     init(person: Teammate){
         self.person = person
-        self.name = person.name
-        self.role = person.role
+       _name = State(initialValue: person.name)
+       _role = State(initialValue: person.role)
+        _isActive = State(initialValue: person.isActive)
     }
     
     
@@ -59,7 +60,7 @@ struct PersonSettings:Identifiable, View {
                        .background(RoundedRectangle(cornerRadius: 5).strokeBorder(Color.gray,
                                                    lineWidth: 1))
             
-            Toggle(isOn: $isPushOn){
+            Toggle(isOn: $isActive){
                 Text("Active member")
             }.padding(.top, 30)
             
@@ -74,7 +75,7 @@ struct PersonSettings:Identifiable, View {
                                       "role":self.role,
                                       "pic":self.person.pic,
                                       "email":self.person.email,
-                                      "isActive":self.isPushOn
+                                      "isActive":self.isActive
                             ]){ err in
                                       if let err = err {
                                           print("Error adding document: \(err)")
@@ -108,7 +109,7 @@ struct PersonSettings:Identifiable, View {
 
 struct PersonSettings_Previews: PreviewProvider {
     static var previews: some View {
-        PersonSettings(person: Teammate(pic: "Andrew", name: "Andrew Akhapkin", role: "Backend developer"))
+        PersonSettings(person: Teammate(pic: "Andrew", name: "Andrew Akhapkin", role: "Backend developer", isActive: true))
          .environmentObject(SessionStore())
     }
 }

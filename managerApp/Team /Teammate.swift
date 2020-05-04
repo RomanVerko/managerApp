@@ -14,6 +14,7 @@ struct Teammate: Identifiable,View {
     var name:String
     var role:String
     var email:String=""
+    var isActive:Bool
   
     
     init(){
@@ -21,21 +22,24 @@ struct Teammate: Identifiable,View {
         self.pic = "user"
         self.name = "username"
         self.role = "role"
+        self.isActive = true
     }
 
-    init(pic: String, name: String, role: String){
+    init(pic: String, name: String, role: String, isActive: Bool){
         self.id = UUID()
         self.pic = pic
         self.name = name
         self.role = role
+        self.isActive = isActive
     }
     
-    init(pic: String, name: String, role: String, email:String){
+    init(pic: String, name: String, role: String, email:String, isActive:Bool){
         self.id = UUID()
         self.pic = pic
         self.name = name
         self.role = role
         self.email = email
+        self.isActive = isActive
     }
     
     init(mate: Teammate){
@@ -43,6 +47,7 @@ struct Teammate: Identifiable,View {
         self.pic = mate.pic
         self.name = mate.name
         self.role = mate.role
+        self.isActive = mate.isActive
     }
     
     var body: some View {
@@ -68,6 +73,6 @@ struct Teammate: Identifiable,View {
 
 struct Teammate_Previews: PreviewProvider {
     static var previews: some View {
-        Teammate(pic: "Andrew", name: "Andrey Akhapkin", role: "Back-end developer")
+        Teammate(pic: "Andrew", name: "Andrey Akhapkin", role: "Back-end developer", isActive: true)
     }
 }

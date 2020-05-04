@@ -48,8 +48,8 @@ struct TeamView: View {
                     let mate = Teammate(pic: i["pic"] as? String ?? "user",
                                         name: i["name"] as? String ?? "default name",
                                         role: i["role"] as? String ?? "default role",
-                                        email: i["email"] as? String ?? "default email")
-                    
+                                        email: i["email"] as? String ?? "default email",
+                                        isActive: i["isActive"] as? Bool ?? true)
                     self.userData.append(mate)
                 }
                 
@@ -75,8 +75,10 @@ struct TeamView: View {
                     .font(.system(size: 14, weight: .bold))
                     .background(LinearGradient(gradient: Gradient(colors: [.green,.blue]), startPoint: .leading , endPoint: .trailing))
                 .cornerRadius(5)
-            }.padding(.horizontal, 60)
-                .padding(.bottom, 10)
+            }
+            .buttonStyle(SizeButtonStyle())
+            .padding(.horizontal, 60)
+            .padding(.bottom, 10)
     
         }
     }

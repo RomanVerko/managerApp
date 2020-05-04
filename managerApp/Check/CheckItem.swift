@@ -16,6 +16,7 @@ struct CheckItem: Identifiable, View {
     var type:String = ""
     var isActive = true
     var dttm : Date = Date()
+    var fireID: String = ""
     
     
     init(){
@@ -25,9 +26,10 @@ struct CheckItem: Identifiable, View {
         isActive = true
         color = .red
         dttm = Date()
+        id = UUID()
     }
     
-    init(name: String, desc: String, type: String, isActive: Bool, dttm:Date){
+    init(name: String, desc: String, type: String, isActive: Bool, dttm:Date, fireID: String){
         self.desc = desc
         self.name = name
         self.type = type
@@ -38,6 +40,7 @@ struct CheckItem: Identifiable, View {
             color = .red
         }
         self.dttm = dttm
+        self.fireID = fireID
     }
     
     init(item: CheckItem){
@@ -51,6 +54,7 @@ struct CheckItem: Identifiable, View {
            color = .red
        }
         self.dttm = item.dttm
+        self.fireID = item.fireID
     }
     
     var body: some View {
@@ -72,6 +76,9 @@ struct CheckItem: Identifiable, View {
                     .font(.caption)
                     .foregroundColor(.gray)
                     Spacer()
+                    Text(type)
+                    .font(.caption)
+                        .foregroundColor(.gray)
                 }
                 
             }.padding()
