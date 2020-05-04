@@ -102,7 +102,7 @@ struct PersonSettings:Identifiable, View {
             }
             
         }.padding(.horizontal)
-            .navigationBarTitle(person.name)
+            .navigationBarTitle(person.name) 
         
     }
 }

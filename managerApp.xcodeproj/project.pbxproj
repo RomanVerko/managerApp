@@ -24,7 +24,6 @@
 		1A06A1212455E30C0001C914 /* ChecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A06A1202455E30C0001C914 /* ChecksView.swift */; };
 		1A06A1232455E4B90001C914 /* CheckItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A06A1222455E4B90001C914 /* CheckItem.swift */; };
 		1A06A1252455F3590001C914 /* CheckSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A06A1242455F3590001C914 /* CheckSettings.swift */; };
-		1A06A12D245619CA0001C914 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A06A12C245619CA0001C914 /* Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +45,6 @@
 		1A06A1202455E30C0001C914 /* ChecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecksView.swift; sourceTree = "<group>"; };
 		1A06A1222455E4B90001C914 /* CheckItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckItem.swift; sourceTree = "<group>"; };
 		1A06A1242455F3590001C914 /* CheckSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSettings.swift; sourceTree = "<group>"; };
-		1A06A12C245619CA0001C914 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = SOURCE_ROOT; };
 		1F654A2866336C2B273D2BF5 /* Pods-managerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-managerApp.debug.xcconfig"; path = "Target Support Files/Pods-managerApp/Pods-managerApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D55BB3CC21C7C2E5DE3EA83B /* Pods-managerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-managerApp.release.xcconfig"; path = "Target Support Files/Pods-managerApp/Pods-managerApp.release.xcconfig"; sourceTree = "<group>"; };
 		F86C3370E9712B9DA6D894C6 /* Pods_managerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_managerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +83,6 @@
 		1A06A0F72454E15D0001C914 /* managerApp */ = {
 			isa = PBXGroup;
 			children = (
-				1A06A12C245619CA0001C914 /* Test.swift */,
 				1A06A11F2455E2FC0001C914 /* Check */,
 				1A06A0F82454E15D0001C914 /* AppDelegate.swift */,
 				1A06A10E2454E1F10001C914 /* SessionStore.swift */,
@@ -270,7 +267,6 @@
 				1A06A1152455BB850001C914 /* Teammate.swift in Sources */,
 				1A06A1182455BECB0001C914 /* TeamView.swift in Sources */,
 				1A06A0FB2454E15D0001C914 /* SceneDelegate.swift in Sources */,
-				1A06A12D245619CA0001C914 /* Test.swift in Sources */,
 				1A06A1212455E30C0001C914 /* ChecksView.swift in Sources */,
 				1A06A10F2454E1F10001C914 /* SessionStore.swift in Sources */,
 				1A06A11A2455C2CA0001C914 /* PersonSettings.swift in Sources */,

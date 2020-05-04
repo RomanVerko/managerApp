@@ -17,9 +17,7 @@ struct ChecksView: View {
     @ObservedObject var checkoutData = observer()
     
     var checkouts: [CheckItem] = []
-//        CheckItem(name: "Everyday check", desc: "code review", color: .green),
-//        CheckItem(name: "Mood analisys", desc: "additional metric", color: .red),
-//        CheckItem(name: "Module datacheck", desc: "project possibilities", color: .green)]
+
     
     class observer: ObservableObject{
             

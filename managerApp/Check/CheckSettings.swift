@@ -14,6 +14,7 @@ struct CheckSettings:Identifiable, View {
     @State var name:String
     @State var desc: String
     @State private var didTap:Bool = false
+    var didSend:Bool = false
     @State private var selectorIndex:Int
     @State private var mode = ["Module results", "Mental health"]
     @State var isActive:Bool
@@ -74,6 +75,9 @@ struct CheckSettings:Identifiable, View {
             Group{
                 VStack {
                     Button(action: {
+                        if self.didSend == true {
+                            return
+                        }
                        if (self.name == "" && self.desc != ""){
                            self.name = self.checkItem.name
                        } else if (self.name != "" && self.desc == ""){
@@ -82,34 +86,38 @@ struct CheckSettings:Identifiable, View {
                            self.name = self.checkItem.name
                            self.desc = self.checkItem.desc
                        }
-                        self.session.db.collection("users").whereField("isActive", isEqualTo: true).getDocuments() { (querySnapshot, err) in
+                        self.session.db.collection("users").whereField("isActive", isEqualTo: true)
+                            .getDocuments() { (querySnapshot, err) in
                                 if let err = err {
                                     print("Error getting documents: \(err)")
                                 } else {
                                     for document in querySnapshot!.documents {
-                                        let userData = document.data()
-                                        print(userData["email"] as? String ?? "not email at all")
+                                        let userEmail = document.data()["email"] as? String ?? "not email at all"
+                                        self.session.db.collection("results")
+                                               .addDocument(data: ["date":Date(),
+                                               "name":self.name,
+                                               "type":self.mode[self.selectorIndex],
+                                               "desc":self.desc,
+                                               "email":userEmail,
+                                               "done": false])
+                                               { err in
+                                               if let err = err {
+                                                   print("Error adding document: \(err)")
+                                               } else {
+                                                   print("Document added with ID: \(self.name.lowercased().trimmingCharacters(in: .whitespaces))")
+                                               }
+                                           }
+                                        
                                     }
                                 }
                         }
                         
-//                            self.session.db.collection(self.mode[self.selectorIndex])
-//                                .document(self.checkItem.fireID)
-//                                .setData(["date":Date(),
-//                                          "name":self.name,
-//                                          "type":self.mode[self.selectorIndex],
-//                                          "desc":self.desc], merge: true){ err in
-//                                            if let err = err {
-//                                                print("Error adding document: \(err)")
-//                                            } else {
-//                                                print("Document added with ID: \(self.name.lowercased().trimmingCharacters(in: .whitespaces))")
-//                                            }
-//                            }
+                    self.presentationMode.wrappedValue.dismiss()
                                    
                     }) {
                         HStack {
-                            Text("Send")
-                            Image(systemName: "envelope.fill").font(.headline)
+                            Text(didTap ? "Done!" : "Send")
+                            Image(systemName: didTap ? "checkmark" :"envelope.fill").font(.headline)
                         }
                     }.buttonStyle(GradientButtonStyle())
                 }
@@ -130,7 +138,20 @@ struct CheckSettings:Identifiable, View {
                         self.name = self.checkItem.name
                         self.desc = self.checkItem.desc
                     }
-                
+                    if self.checkItem.fireID == "" {
+                            self.session.db.collection("checkouts")
+                            .addDocument(data: ["date":Date(),
+                            "name":self.name,
+                            "isActive":self.isActive,
+                            "type":self.mode[self.selectorIndex],
+                            "desc":self.desc]){ err in
+                            if let err = err {
+                                print("Error adding document: \(err)")
+                            } else {
+                                print("Document added with ID: \(self.name.lowercased().trimmingCharacters(in: .whitespaces))")
+                            }
+                        }
+                    } else{
                         self.session.db.collection("checkouts")
                             .document(self.checkItem.fireID)
                             .setData(["date":Date(),
@@ -144,8 +165,7 @@ struct CheckSettings:Identifiable, View {
                                             print("Document added with ID: \(self.name.lowercased().trimmingCharacters(in: .whitespaces))")
                                         }
                         }
-                    
-                            
+                    }
                         self.session.isPresentedCheckSet = false
                         self.presentationMode.wrappedValue.dismiss()
                 }){
@@ -173,6 +193,7 @@ struct SizeButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+            
     }
 }
 
