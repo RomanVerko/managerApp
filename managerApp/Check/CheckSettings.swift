@@ -12,12 +12,12 @@ import FirebaseFirestore
 struct CheckSettings:Identifiable, View {
     var checkItem:CheckItem
     @State var name:String
-    @State var desc: String
+    @State var desc: String 
     @State private var didTap:Bool = false
     var didSend:Bool = false
     @State private var selectorIndex:Int
     @State private var mode = ["Module results", "Mental health"]
-    @State var isActive:Bool
+    @State var isActive:Bool = true
     @EnvironmentObject var session: SessionStore
     @Environment(\.presentationMode) var presentationMode
     var id = UUID()
@@ -169,7 +169,7 @@ struct CheckSettings:Identifiable, View {
                         self.session.isPresentedCheckSet = false
                         self.presentationMode.wrappedValue.dismiss()
                 }){
-                    Text(didTap ? "Done!" : "Save changes")
+                    Text(didTap ? "Done!" : "Save")
                     .frame(minWidth: 0, maxWidth: .infinity)
                         .frame(height: 50)
                         .foregroundColor(.white)

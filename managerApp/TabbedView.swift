@@ -24,6 +24,12 @@ struct TabbedView: View {
                 .font(.title)
             Text("Checkouts")
             }).tag(1)
+            
+            NavigationView{AnalyticsView()}.tabItem({
+            Image(systemName: "arrow.up.arrow.down.square.fill")
+                .font(.title)
+            Text("Analytics")
+            }).tag(2)
         }
     }
 }

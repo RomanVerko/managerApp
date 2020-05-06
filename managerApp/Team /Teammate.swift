@@ -8,7 +8,9 @@
 
 import SwiftUI
 
-struct Teammate: Identifiable,View {
+struct Teammate: Identifiable,View, Hashable {
+    var serialNumber: String = ""
+    var capacity: Int = 0
     var id = UUID()
     var pic:String
     var name:String
@@ -20,7 +22,7 @@ struct Teammate: Identifiable,View {
     init(){
         self.id = UUID()
         self.pic = "user"
-        self.name = "username"
+        self.name = "username usersec"
         self.role = "role"
         self.isActive = true
     }
@@ -48,6 +50,10 @@ struct Teammate: Identifiable,View {
         self.name = mate.name
         self.role = mate.role
         self.isActive = mate.isActive
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(serialNumber)
     }
     
     var body: some View {

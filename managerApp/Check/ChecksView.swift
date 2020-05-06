@@ -77,7 +77,7 @@ struct ChecksView: View {
                         return
                     }
                     print("deleted id: \(id)")
-                    self.checkoutData.checkouts.remove(atOffsets: index)
+                  
                 }
             }
         }
@@ -93,7 +93,7 @@ struct ChecksView: View {
         ).sheet(isPresented: $session.isPresentedCheckSet){
             CheckSettings(checkItem: CheckItem())
                 .environmentObject(self.session)
-        }
+        } 
     }
 }
 

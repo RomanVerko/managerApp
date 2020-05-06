@@ -18,12 +18,6 @@ struct TeamView: View {
     
     @State var teammates:[Teammate] = []
     
-//    [Teammate(pic: "Andrew", name: "Andrey Akhapkin", role: "Back-end developer"),
-//    Teammate(pic: "Danya", name: "Daniil Pleshkov", role: "DWS developer"),
-//    Teammate(pic: "Radmir", name: "Radmir Imamov", role: "Front-end developer"),
-//    Teammate(pic: "Sasha", name: "Alexandr Manuilov", role: "Front-end developer")
-//    ]
-    
     
     class observer: ObservableObject{
          
@@ -60,7 +54,7 @@ struct TeamView: View {
     
     var body: some View {
         VStack{
-            List(userDatas.userData ){ mate in
+            List(userDatas.userData){ mate in
             NavigationLink(destination: PersonSettings(person: mate)){
                 Teammate(mate: mate)
             }

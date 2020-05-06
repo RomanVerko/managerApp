@@ -24,6 +24,9 @@
 		1A06A1212455E30C0001C914 /* ChecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A06A1202455E30C0001C914 /* ChecksView.swift */; };
 		1A06A1232455E4B90001C914 /* CheckItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A06A1222455E4B90001C914 /* CheckItem.swift */; };
 		1A06A1252455F3590001C914 /* CheckSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A06A1242455F3590001C914 /* CheckSettings.swift */; };
+		1A57DC3F246350910075E3C1 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A57DC3E246350900075E3C1 /* AnalyticsView.swift */; };
+		1A57DC4224635BDB0075E3C1 /* AnalyticCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A57DC4124635BDB0075E3C1 /* AnalyticCardView.swift */; };
+		1A57DC4424636BF60075E3C1 /* UserAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A57DC4324636BF60075E3C1 /* UserAnalyticsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,9 @@
 		1A06A1202455E30C0001C914 /* ChecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecksView.swift; sourceTree = "<group>"; };
 		1A06A1222455E4B90001C914 /* CheckItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckItem.swift; sourceTree = "<group>"; };
 		1A06A1242455F3590001C914 /* CheckSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSettings.swift; sourceTree = "<group>"; };
+		1A57DC3E246350900075E3C1 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		1A57DC4124635BDB0075E3C1 /* AnalyticCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticCardView.swift; sourceTree = "<group>"; };
+		1A57DC4324636BF60075E3C1 /* UserAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnalyticsView.swift; sourceTree = "<group>"; };
 		1F654A2866336C2B273D2BF5 /* Pods-managerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-managerApp.debug.xcconfig"; path = "Target Support Files/Pods-managerApp/Pods-managerApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D55BB3CC21C7C2E5DE3EA83B /* Pods-managerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-managerApp.release.xcconfig"; path = "Target Support Files/Pods-managerApp/Pods-managerApp.release.xcconfig"; sourceTree = "<group>"; };
 		F86C3370E9712B9DA6D894C6 /* Pods_managerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_managerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +97,7 @@
 				1A06A0FA2454E15D0001C914 /* SceneDelegate.swift */,
 				1A06A0FC2454E15D0001C914 /* ContentView.swift */,
 				1A06A1122454E4480001C914 /* TabbedView.swift */,
+				1A57DC40246355AE0075E3C1 /* Analytics */,
 				1A06A0FE2454E15F0001C914 /* Assets.xcassets */,
 				1A06A1032454E15F0001C914 /* LaunchScreen.storyboard */,
 				1A06A1062454E15F0001C914 /* Info.plist */,
@@ -126,6 +133,16 @@
 				1A06A1242455F3590001C914 /* CheckSettings.swift */,
 			);
 			path = Check;
+			sourceTree = "<group>";
+		};
+		1A57DC40246355AE0075E3C1 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				1A57DC3E246350900075E3C1 /* AnalyticsView.swift */,
+				1A57DC4124635BDB0075E3C1 /* AnalyticCardView.swift */,
+				1A57DC4324636BF60075E3C1 /* UserAnalyticsView.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		BA7C350325CE36D5F77C3F62 /* Pods */ = {
@@ -261,16 +278,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A57DC3F246350910075E3C1 /* AnalyticsView.swift in Sources */,
 				1A06A1232455E4B90001C914 /* CheckItem.swift in Sources */,
 				1A06A0F92454E15D0001C914 /* AppDelegate.swift in Sources */,
 				1A06A1112454E2110001C914 /* AuthView.swift in Sources */,
 				1A06A1152455BB850001C914 /* Teammate.swift in Sources */,
+				1A57DC4424636BF60075E3C1 /* UserAnalyticsView.swift in Sources */,
 				1A06A1182455BECB0001C914 /* TeamView.swift in Sources */,
 				1A06A0FB2454E15D0001C914 /* SceneDelegate.swift in Sources */,
 				1A06A1212455E30C0001C914 /* ChecksView.swift in Sources */,
 				1A06A10F2454E1F10001C914 /* SessionStore.swift in Sources */,
 				1A06A11A2455C2CA0001C914 /* PersonSettings.swift in Sources */,
 				1A06A1252455F3590001C914 /* CheckSettings.swift in Sources */,
+				1A57DC4224635BDB0075E3C1 /* AnalyticCardView.swift in Sources */,
 				1A06A1132454E4480001C914 /* TabbedView.swift in Sources */,
 				1A06A0FD2454E15D0001C914 /* ContentView.swift in Sources */,
 			);
