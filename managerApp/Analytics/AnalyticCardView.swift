@@ -23,8 +23,8 @@ struct AnalyticCardView: Identifiable, View {
     
     class observer: ObservableObject{
             
-           @Published var module = 0
-           @Published var mental = 0
+        @Published var module = 0
+        @Published var mental = 0
            
         init(teammate: Teammate){
                let db = Firestore.firestore().collection("results")
@@ -76,22 +76,34 @@ struct AnalyticCardView: Identifiable, View {
             Rectangle()
                 .fill(LinearGradient(
                     gradient: .init(colors: [.firstColor, .secondColor]),
-                    startPoint: .init(x: 0.5, y: 0.1),
+                    startPoint: .init(x: 0.4, y: 0.1),
                   endPoint: .init(x: 0.5, y: 0.8)
                 ))
-                .frame(width: 320, height: 190, alignment: .center)
+                .frame(width: 320, height: 130, alignment: .center)
                 .cornerRadius(20)
                 .shadow(radius: 5)
                 
             VStack{
-                Text(teammate.name)
-                     .font(.system(size: 20, weight: .medium))
-                Text(teammate.role)
-                    .font(.system(size: 15, weight: .light))
-                Text("Checkouts:").padding(.top, 15)
-                    .font(.system(size: 15, weight: .medium))
-                Text("Module results: \(self.results.module)").padding()
-                Text("Mental health:: \(self.results.mental)")
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(teammate.name)
+                            .font(.system(size: 20, weight: .medium))
+                        Text(teammate.role)
+                            .font(.system(size: 15, weight: .light))
+                    }.padding(.horizontal, 10)
+                        
+                    Spacer()
+                }
+               
+                
+                HStack {
+                    Spacer()
+                    VStack(alignment: .leading) {
+                        Text("Module results:  \(self.results.module)")
+                        Text("Mental health:    \(self.results.mental)")
+                        }
+                 .padding(.horizontal, 20)
+                }
             }.foregroundColor(.black)
         }
     }

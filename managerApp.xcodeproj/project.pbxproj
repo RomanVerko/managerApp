@@ -27,6 +27,8 @@
 		1A57DC3F246350910075E3C1 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A57DC3E246350900075E3C1 /* AnalyticsView.swift */; };
 		1A57DC4224635BDB0075E3C1 /* AnalyticCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A57DC4124635BDB0075E3C1 /* AnalyticCardView.swift */; };
 		1A57DC4424636BF60075E3C1 /* UserAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A57DC4324636BF60075E3C1 /* UserAnalyticsView.swift */; };
+		1A57DC46246704A30075E3C1 /* GraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A57DC45246704A30075E3C1 /* GraphicsView.swift */; };
+		1A57DC48246737130075E3C1 /* DetailedAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A57DC47246737130075E3C1 /* DetailedAnalyticsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		1A57DC3E246350900075E3C1 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		1A57DC4124635BDB0075E3C1 /* AnalyticCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticCardView.swift; sourceTree = "<group>"; };
 		1A57DC4324636BF60075E3C1 /* UserAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnalyticsView.swift; sourceTree = "<group>"; };
+		1A57DC45246704A30075E3C1 /* GraphicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsView.swift; sourceTree = "<group>"; };
+		1A57DC47246737130075E3C1 /* DetailedAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedAnalyticsView.swift; sourceTree = "<group>"; };
 		1F654A2866336C2B273D2BF5 /* Pods-managerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-managerApp.debug.xcconfig"; path = "Target Support Files/Pods-managerApp/Pods-managerApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D55BB3CC21C7C2E5DE3EA83B /* Pods-managerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-managerApp.release.xcconfig"; path = "Target Support Files/Pods-managerApp/Pods-managerApp.release.xcconfig"; sourceTree = "<group>"; };
 		F86C3370E9712B9DA6D894C6 /* Pods_managerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_managerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +145,8 @@
 				1A57DC3E246350900075E3C1 /* AnalyticsView.swift */,
 				1A57DC4124635BDB0075E3C1 /* AnalyticCardView.swift */,
 				1A57DC4324636BF60075E3C1 /* UserAnalyticsView.swift */,
+				1A57DC45246704A30075E3C1 /* GraphicsView.swift */,
+				1A57DC47246737130075E3C1 /* DetailedAnalyticsView.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -287,8 +293,10 @@
 				1A06A1182455BECB0001C914 /* TeamView.swift in Sources */,
 				1A06A0FB2454E15D0001C914 /* SceneDelegate.swift in Sources */,
 				1A06A1212455E30C0001C914 /* ChecksView.swift in Sources */,
+				1A57DC46246704A30075E3C1 /* GraphicsView.swift in Sources */,
 				1A06A10F2454E1F10001C914 /* SessionStore.swift in Sources */,
 				1A06A11A2455C2CA0001C914 /* PersonSettings.swift in Sources */,
+				1A57DC48246737130075E3C1 /* DetailedAnalyticsView.swift in Sources */,
 				1A06A1252455F3590001C914 /* CheckSettings.swift in Sources */,
 				1A57DC4224635BDB0075E3C1 /* AnalyticCardView.swift in Sources */,
 				1A06A1132454E4480001C914 /* TabbedView.swift in Sources */,

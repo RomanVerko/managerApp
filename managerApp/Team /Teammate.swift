@@ -66,7 +66,7 @@ struct Teammate: Identifiable,View, Hashable {
             .shadow(radius: 5)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 70)
-            VStack{
+            VStack(alignment: .leading){
                 Text(name)
                     .multilineTextAlignment(.center)
                 Text(role)

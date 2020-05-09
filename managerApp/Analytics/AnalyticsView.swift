@@ -31,7 +31,10 @@ struct AnalyticsView: View {
                        print((err?.localizedDescription)!)
                        return
                    }
+                
                    self.userData = [Teammate]()
+                   self.cards = []
+                
                    Firestore.firestore().clearPersistence { (err) in
                        print((err?.localizedDescription)!)
                    }
@@ -52,22 +55,22 @@ struct AnalyticsView: View {
            
        }
     
-    var cards:[AnalyticCardView] = [AnalyticCardView(mate: Teammate(pic: "", name: "radmir", role: "developer", email: "rmimamov@edu.hse.ru", isActive: true)),AnalyticCardView(mate: Teammate(pic: "", name: "Andrew", role: "developer", email: "rmimamov@edu.hse.ru", isActive: true)),AnalyticCardView(mate: Teammate(pic: "", name: "Danya", role: "developer", email: "rmimamov@edu.hse.ru", isActive: true)), AnalyticCardView(mate: Teammate(pic: "", name: "Danya", role: "developer", email: "rmimamov@edu.hse.ru", isActive: true))]
+
     
     var body: some View {
         VStack{
             ScrollView(.vertical, showsIndicators: false) {
                VStack() {
                 ForEach(self.userDatas.cards) { card in
-                    NavigationLink(destination: UserAnalyticsView()){
+                    NavigationLink(destination: UserAnalyticsView(mate: card.teammate)){
                        VStack {
                            GeometryReader { geo in
                                 card
                                .padding()
                                .rotation3DEffect(Angle(degrees: (Double(geo.frame(in: .global).minX) + 40) / 20 ), axis: (x:0, y:0, z: 0))
-                           }.frame(width: 350,height:210)
+                           }.frame(width: 350,height:140)
                        }
-                       .frame(width: 350, height:200)
+                       .frame(width: 350, height:140)
                     }
                    }
                }
