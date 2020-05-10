@@ -70,7 +70,7 @@ struct PersonSettings:Identifiable, View {
                 Button(action: {
                     if (self.name != "" && self.role != ""){
                         self.session.db.collection("users")
-                            .document(self.person.email) // todo по email
+                            .document(self.person.email) 
                             .setData(["name":self.name,
                                       "role":self.role,
                                       "pic":self.person.pic,

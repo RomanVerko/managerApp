@@ -8,11 +8,13 @@
 
 import SwiftUI
 import FirebaseFirestore
+import FirebaseStorage
 
 struct TeamView: View {
     
     @EnvironmentObject var session: SessionStore
     @ObservedObject var userDatas = observer()
+    let storage = Storage.storage().reference()
 
    
     

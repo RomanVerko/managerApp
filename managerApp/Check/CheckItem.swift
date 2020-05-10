@@ -15,7 +15,7 @@ struct CheckItem: Identifiable, View {
     var desc:String = ""
     var type:String = ""
     var isActive = true
-    var dttm : Date = Date()
+    var dttm : String = ""
     var fireID: String = ""
     
     
@@ -25,7 +25,7 @@ struct CheckItem: Identifiable, View {
         desc = "Daily"
         isActive = true
         color = .red
-        dttm = Date()
+        dttm = ""
         id = UUID()
     }
     
@@ -39,7 +39,7 @@ struct CheckItem: Identifiable, View {
         }  else {
             color = .red
         }
-        self.dttm = dttm
+        self.dttm = ""
         self.fireID = fireID
     }
     

@@ -19,7 +19,7 @@ struct GraphicsView: View {
         self.uniq = uniq
         teammate = mate
         results = observer(teammate: mate, uniq: uniq)
-        self.formatter.dateFormat = "MMM d, hh:mm "
+        self.formatter.dateFormat = "MMM d, h:mm"
     }
     
     
@@ -52,9 +52,9 @@ struct GraphicsView: View {
                                           dateDone: i["dateDone"] as? String ?? "",
                                           progress: i["progress"] as? Double ?? 0.0,
                                           done: i["done"] as? Bool ?? false)
-                    print(i["date"] as? Date ?? Date())
                     self.checks.append(check)
                 }
+                self.checks.sort(by: { $0.dateDone > $1.dateDone })
                 
             }
         }
@@ -69,7 +69,10 @@ struct GraphicsView: View {
                 .padding(.top, -45)
           
             if self.results.checks.filter {$0.done == true}.count != 0 {
-                Text(self.results.checks[0].desc)
+                VStack(spacing: 10){
+                    Text(self.results.checks[0].desc)
+                    Text("by \(teammate.name)")
+                }
                 List(self.results.checks.filter {$0.done == true}){ check in
                     NavigationLink(destination: DetailedAnalyticsView(check: check)){
                         HStack{

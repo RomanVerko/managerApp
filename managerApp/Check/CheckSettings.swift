@@ -21,6 +21,7 @@ struct CheckSettings:Identifiable, View {
     @EnvironmentObject var session: SessionStore
     @Environment(\.presentationMode) var presentationMode
     var id = UUID()
+    var formatter = DateFormatter()
 
     init(checkItem: CheckItem){
         self.checkItem = checkItem
@@ -32,6 +33,7 @@ struct CheckSettings:Identifiable, View {
         } else {
             _selectorIndex = State(initialValue: 1)
         }
+         self.formatter.dateFormat = "MMM d, HH:mm"
     }
     
     var body: some View {
@@ -94,7 +96,7 @@ struct CheckSettings:Identifiable, View {
                                     for document in querySnapshot!.documents {
                                         let userEmail = document.data()["email"] as? String ?? "not email at all"
                                         self.session.db.collection("results")
-                                               .addDocument(data: ["date":Date(),
+                                            .addDocument(data: ["date":self.formatter.string(from: Date()),
                                                "name":self.name,
                                                "type":self.mode[self.selectorIndex],
                                                "desc":self.desc,

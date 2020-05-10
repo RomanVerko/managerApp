@@ -57,11 +57,7 @@ struct ChecksView: View {
     
     
     var body: some View {
-//        List(self.checkoutData.checkouts){ item in
-//            NavigationLink(destination: CheckSettings(checkItem: item)){
-//                  CheckItem(item: item)
-//            }
-//        }
+
         List() {
             ForEach(self.checkoutData.checkouts){item in
                 NavigationLink(destination: CheckSettings(checkItem: item)){
